@@ -3,7 +3,7 @@ dependencies:
   atanisoft/esp_lcd_touch_xpt2046: "^1.0.4"
   espressif/esp_lcd_ili9341: "^2.0.0"
   espressif/esp_lvgl_port: "^2.3.2"
-  lvgl/lvgl: "~8.3.11"
+  lvgl/lvgl: "~9.1.0"
   ## Required IDF version
   idf:
     version: ">=4.1.0"
