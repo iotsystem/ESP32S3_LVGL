@@ -1,5 +1,12 @@
-idf_component_register(SRCS "main.c"
-                    INCLUDE_DIRS ".")
+# set(UI_DIR ./gui_app)
+# file(GLOB_RECURSE UI_SRCS ${UI_DIR}/*.c)
 
-lvgl_port_create_c_image("images/esp_logo.png" "images/" "ARGB8888" "NONE")
-lvgl_port_add_images(${COMPONENT_LIB} "images/")
+# idf_component_register(SRCS "main.c" ${UI_SRCS}
+#                         INCLUDE_DIRS "."  ${UI_DIR}                        
+#                       )
+
+                      
+idf_component_register(
+    SRCS "main.c"
+    INCLUDE_DIRS "."                        
+)

@@ -18,6 +18,11 @@
 
 #include "esp_lcd_touch_xpt2046.h"
 
+
+#include "lv_demos.h"
+#include "lv_examples.h"
+#include "gui_app/ui.h"
+
 /* LCD size */
 #define EXAMPLE_LCD_H_RES   (240)
 #define EXAMPLE_LCD_V_RES   (320)
@@ -68,10 +73,11 @@
 
 */
 
+
 static const char *TAG = "EXAMPLE";
 
-// LVGL image declare
-LV_IMG_DECLARE(esp_logo)
+// // LVGL image declare
+// LV_IMG_DECLARE(esp_logo)
 
 /* LCD IO and panel */
 static esp_lcd_panel_io_handle_t lcd_io = NULL;
@@ -156,8 +162,8 @@ static esp_err_t app_touch_init(void)
         .miso_io_num = EXAMPLE_TOUCH_GPIO_MISO,
         .quadwp_io_num = GPIO_NUM_NC,
         .quadhd_io_num = GPIO_NUM_NC,
-        // .max_transfer_sz = EXAMPLE_LCD_H_RES * EXAMPLE_LCD_DRAW_BUFF_HEIGHT * sizeof(uint16_t),
-        .max_transfer_sz = EXAMPLE_LCD_H_RES * 80 * sizeof(uint16_t),
+        .max_transfer_sz = EXAMPLE_LCD_H_RES * EXAMPLE_LCD_DRAW_BUFF_HEIGHT * sizeof(uint16_t),
+        // .max_transfer_sz = EXAMPLE_LCD_H_RES * 80 * sizeof(uint16_t),
     };
     ESP_RETURN_ON_ERROR(spi_bus_initialize(EXAMPLE_TOUCH_SPI_NUM, &buscfg, SPI_DMA_CH_AUTO), TAG, "SPI init failed");
 
@@ -253,35 +259,41 @@ static void app_main_display(void)
     /* Task lock */
     lvgl_port_lock(0);
 
-    /* Your LVGL objects code here .... */
+//     /* Your LVGL objects code here .... */
 
-    /* Create image */
-    lv_obj_t *img_logo = lv_img_create(scr);
-    lv_img_set_src(img_logo, &esp_logo);
-    lv_obj_align(img_logo, LV_ALIGN_TOP_MID, 0, 20);
+    // /* Create image */
+    // lv_obj_t *img_logo = lv_img_create(scr);
+    // lv_img_set_src(img_logo, &esp_logo);
+    // lv_obj_align(img_logo, LV_ALIGN_TOP_MID, 0, 20);
 
-    /* Label */
-    lv_obj_t *label = lv_label_create(scr);
-    lv_obj_set_width(label, EXAMPLE_LCD_H_RES);
-    lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, 0);
-#if LVGL_VERSION_MAJOR == 8
-    lv_label_set_recolor(label, true);
-    lv_label_set_text(label, "#FF0000 "LV_SYMBOL_BELL" Hello world Espressif and LVGL "LV_SYMBOL_BELL"#\n#FF9400 "LV_SYMBOL_WARNING" For simplier initialization, use BSP "LV_SYMBOL_WARNING" #");
-#else
-    lv_label_set_text(label, LV_SYMBOL_BELL" Hello world Espressif and LVGL "LV_SYMBOL_BELL"\n "LV_SYMBOL_WARNING" For simplier initialization, use BSP "LV_SYMBOL_WARNING);
-#endif
-    lv_obj_align(label, LV_ALIGN_CENTER, 0, 20);
+//     /* Label */
+//     lv_obj_t *label = lv_label_create(scr);
+//     lv_obj_set_width(label, EXAMPLE_LCD_H_RES);
+//     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, 0);
+// #if LVGL_VERSION_MAJOR == 8
+//     lv_label_set_recolor(label, true);
+//     lv_label_set_text(label, "#FF0000 "LV_SYMBOL_BELL" Hello world Espressif and LVGL "LV_SYMBOL_BELL"#\n#FF9400 "LV_SYMBOL_WARNING" For simplier initialization, use BSP "LV_SYMBOL_WARNING" #");
+// #else
+//     lv_label_set_text(label, LV_SYMBOL_BELL" Hello world Espressif and LVGL "LV_SYMBOL_BELL"\n "LV_SYMBOL_WARNING" For simplier initialization, use BSP "LV_SYMBOL_WARNING);
+// #endif
+//     lv_obj_align(label, LV_ALIGN_CENTER, 0, 20);
 
-    /* Button */
-    lv_obj_t *btn = lv_btn_create(scr);
-    label = lv_label_create(btn);
-    lv_label_set_text_static(label, "Rotate screen");
-    lv_obj_align(btn, LV_ALIGN_BOTTOM_MID, 0, -30);
-    lv_obj_add_event_cb(btn, _app_button_cb, LV_EVENT_CLICKED, NULL);
+//     /* Button */
+//     lv_obj_t *btn = lv_btn_create(scr);
+//     label = lv_label_create(btn);
+//     lv_label_set_text_static(label, "Rotate screen");
+//     lv_obj_align(btn, LV_ALIGN_BOTTOM_MID, 0, -30);
+//     lv_obj_add_event_cb(btn, _app_button_cb, LV_EVENT_CLICKED, NULL);
+
+    void lv_demo_music(void);
+    lv_demo_music();
 
     /* Task unlock */
     lvgl_port_unlock();
 }
+
+
+
 
 void app_main(void)
 {
@@ -296,4 +308,8 @@ void app_main(void)
 
     /* Show LVGL objects */
     app_main_display();
+    
 }
+
+
+
