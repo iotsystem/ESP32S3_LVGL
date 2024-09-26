@@ -18,10 +18,7 @@
 
 #include "esp_lcd_touch_xpt2046.h"
 
-
-#include "lv_demos.h"
-#include "lv_examples.h"
-#include "gui_app/ui.h"
+#include "ui.h"
 
 /* LCD size */
 #define EXAMPLE_LCD_H_RES   (240)
@@ -285,9 +282,10 @@ static void app_main_display(void)
 //     lv_obj_align(btn, LV_ALIGN_BOTTOM_MID, 0, -30);
 //     lv_obj_add_event_cb(btn, _app_button_cb, LV_EVENT_CLICKED, NULL);
 
-    void lv_demo_music(void);
-    lv_demo_music();
+    // void lv_demo_music(void);
+    // lv_demo_music();
 
+    ui_init();
     /* Task unlock */
     lvgl_port_unlock();
 }
